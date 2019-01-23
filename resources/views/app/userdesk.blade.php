@@ -151,25 +151,17 @@
 			<div class="card">
 				<div class="card-header bg-red">Birthday Wishes</div>
 				<div class="card-body birthday-section">
-					<div class="media border p-3">
-						{{ HTML::image('images/1.jpg','name',array("class"=>"mr-3 rounded-circle")) }}
-	
-						<div class="media-body">
-						  <h4>John Doe</h4>
-						  <p>Lorem ipsum dolor sit amet.</p>      
+					@foreach ($birthWishesData as $data)
+						<div class="media border p-3">
+						 <img src="images/{{$data->profile_pic}}" class="mr-3 rounded-circle"></img>
+							<div class="media-body">
+							  <h4>{{$data->emp_name}}</h4>
+							  <p>{{$data->comment}}</p>      
+							</div>
 						</div>
-					</div>
-
-					<div class="media border p-3">
-							{{ HTML::image('images/1.jpg','name',array("class"=>"mr-3 rounded-circle")) }}
-	
-
-						<div class="media-body">
-						  <h4>John Doe</h4>
-						  <p>Lorem ipsum dolor sit amet.</p>      
-						</div>
-					</div>
-
+					@endforeach	
+				
+					
 					
 				</div> 
 				

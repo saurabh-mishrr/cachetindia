@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//use for user deshboard.
 Route::get('userdesk','UserDashboardController@index');
+
+Route::resource("events","EventController");
