@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use \Adldap\Laravel\Facades\Adldap;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
+
+
+    public function authenticate(Request $request)
+    {
+        if (Auth::attempt($request->only('username', 'password'))) {
+            die("sds");
+            return redirect()->intended('dashboard');
+        }
+        #$cre = $request->only('username', 'password');
     }
 }

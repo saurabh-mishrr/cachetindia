@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//use for user deshboard.
 Route::get('userdesk','UserDashboardController@index');
+Auth::routes([
+   'reset' => false,
+   'verify' => false,
+   'register' => false,
+]);
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource("events","EventController");
+
