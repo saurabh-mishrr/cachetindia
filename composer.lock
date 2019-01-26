@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71d681b280fdf62d7af2f2d3e4077896",
+    "content-hash": "6904584e675b4ad69e33bf2db971d306",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -111,6 +111,66 @@
                 "ldap"
             ],
             "time": "2019-01-08T15:37:47+00:00"
+        },
+        {
+            "name": "chumper/zipper",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Chumper/Zipper.git",
+                "reference": "6a1733c34d67c3952b8439afb36ad4ea5c3ceacb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Chumper/Zipper/zipball/6a1733c34d67c3952b8439afb36ad4ea5c3ceacb",
+                "reference": "6a1733c34d67c3952b8439afb36ad4ea5c3ceacb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^5.0",
+                "illuminate/support": "^5.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Chumper\\Zipper\\ZipperServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zipper": "Chumper\\Zipper\\Zipper"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Chumper\\Zipper\\": "src/Chumper/Zipper"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Plaschke",
+                    "email": "github@nilsplaschke.de",
+                    "homepage": "http://nilsplaschke.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a little neat helper for the ZipArchive methods with handy functions",
+            "homepage": "http://github.com/Chumper/zipper",
+            "keywords": [
+                "archive",
+                "laravel",
+                "zip"
+            ],
+            "time": "2017-07-17T08:05:10+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3327,6 +3387,106 @@
                 "environment"
             ],
             "time": "2018-10-30T17:29:25+00:00"
+        },
+        {
+            "name": "wilgucki/csv",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wilgucki/csv.git",
+                "reference": "c740a98b53e224958818ca1a82f313ce25162ca8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wilgucki/csv/zipball/c740a98b53e224958818ca1a82f313ce25162ca8",
+                "reference": "c740a98b53e224958818ca1a82f313ce25162ca8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "wilgucki/php-csv": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wilgucki\\Csv\\CsvServiceProvider"
+                    ],
+                    "aliases": {
+                        "CsvReader": "Wilgucki\\Csv\\Facades\\Reader",
+                        "CsvWriter": "Wilgucki\\Csv\\Facades\\Writer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wilgucki\\Csv\\": "src",
+                    "Wilgucki\\Csv\\Test\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maciej Wilgucki",
+                    "email": "mwilgucki@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 package for writing and reading CSV files",
+            "keywords": [
+                "csv",
+                "laravel"
+            ],
+            "time": "2018-07-15T11:27:43+00:00"
+        },
+        {
+            "name": "wilgucki/php-csv",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wilgucki/php-csv.git",
+                "reference": "a6759ecc2ee42348f989dce0688f6c9dd02b1b96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wilgucki/php-csv/zipball/a6759ecc2ee42348f989dce0688f6c9dd02b1b96",
+                "reference": "a6759ecc2ee42348f989dce0688f6c9dd02b1b96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wilgucki\\PhpCsv\\": "src",
+                    "Wilgucki\\PhpCsv\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maciej Wilgucki",
+                    "email": "mwilgucki@gmail.com"
+                }
+            ],
+            "description": "Object oriented way of managing CSV files",
+            "keywords": [
+                "csv",
+                "php"
+            ],
+            "time": "2018-07-15T10:37:15+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Kolkata',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Wilgucki\Csv\CsvServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
 
     ],
 
@@ -227,7 +229,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Adldap' => Adldap\Laravel\Facades\Adldap::class,
-
+        'CsvReader' => Wilgucki\Csv\Facades\Reader::class,
+        'CsvWriter' => Wilgucki\Csv\Facades\Writer::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
     ],
 
 ];
