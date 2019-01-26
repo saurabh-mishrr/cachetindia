@@ -25,3 +25,14 @@ Auth::routes([
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource("events","EventController");
 
+// these are backends routes.
+Route::namespace('Backends')->group(function() {
+	Route::resource("filetrail","FileTrailController", [
+		'names' => [
+			'create' => 'salary.create',
+		]
+	]);
+	Route::get('/upload-salary-slips/{id}', 'FileTrailController@salarySlipUploadPage')->name('upload-salary-slips');
+	Route::post('/upload-salary-slips', 'FileTrailController@uploadSalarySlips')->name('upload-slips');
+});
+

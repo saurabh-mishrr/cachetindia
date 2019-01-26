@@ -1,17 +1,14 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-       <title>Cachet Admin</title>
+       <title>@yield('title', 'Cachet India')</title>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
        {{ HTML::style('css/bootstrap.min.css') }}
        {{ HTML::style('css/adminstyle.css') }}
-     
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-       {{ HTML::script('js/bootstrap.min.js') }}
        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
        <link href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" rel="stylesheet">
+       @yield('styles')
     </head>
     <body>
             <div class="container-fluid fixed-top bg-primary py-3">
@@ -47,9 +44,13 @@
                         </div>
                     </div>
                     <div class="col p-3">
-                       @yield('content');
+                       @yield('content')
                     </div>
                 </div>
         </div>
+        {{ HTML::script('js/jquery.min.js') }}
+        {{ HTML::script('js/popper.min.js') }}
+        {{ HTML::script('js/bootstrap.min.js') }}
+        @yield('scripts')
     </body>
 </html>

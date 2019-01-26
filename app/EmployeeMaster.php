@@ -8,6 +8,11 @@ use App\BirthWishesDetail;
 use DB;
 class EmployeeMaster extends Model
 {
+
+    protected $table = 'employee_master';
+
+    public $timestamps = false;
+
    //use for retrive emp details.
     public function getBirthWishesData(){
        $empdata =  DB::table('employee_master')

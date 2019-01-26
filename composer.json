@@ -10,10 +10,13 @@
     "require": {
         "php": "^7.1.3",
         "adldap2/adldap2-laravel": "^5.1",
+        "chumper/zipper": "^1.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^5.7"
+        "laravelcollective/html": "^5.7",
+        "wilgucki/csv": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
