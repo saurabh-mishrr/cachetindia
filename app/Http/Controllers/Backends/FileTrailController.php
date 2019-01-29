@@ -12,9 +12,17 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use CsvReader;
+use Repositories\FileTrailRepository;
 
 class FileTrailController extends Controller
 {
+
+    protected $repo;
+
+    public function __construct(FileTrailRepository $ftr)
+    {
+        $this->repo = $ftr;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +58,7 @@ class FileTrailController extends Controller
             $tarStoredIn = $tarFile->storeAs($storageLocation, $tarFile->getClientOriginalName());
             $csvFile = $request->file('csv_file_path');
             $csvStoredIn = $csvFile->storeAs($storageLocation, $csvFile->getClientOriginalName());  
-            $model = FileTrail::create([
+            $model = $this->repo->create([
                 'csv_file_path'     =>  $csvStoredIn,
                 'tar_file_path'     =>  $tarStoredIn,
                 'status'            =>  'pending',
