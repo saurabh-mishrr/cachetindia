@@ -82,8 +82,8 @@ class EventController extends Controller
      * @param  \App\EventMaster  $eventMaster
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EventMaster $eventMaster)
+    public function destroy(EventMaster $eventMaster, Request $request)
     {
-        //
+        
     }
 }
