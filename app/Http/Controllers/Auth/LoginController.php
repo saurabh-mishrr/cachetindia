@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use \Adldap\Laravel\Facades\Adldap;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -44,13 +45,28 @@ class LoginController extends Controller
         return 'username';
     }
 
+    public function login(Request $request)
+    {
+        if (Auth::attempt($request->only('username', 'password'))) {
 
-    public function authenticate(Request $request)
+            // Returns \App\User model configured in `config/auth.php`.
+            $user = Auth::user();
+            $request->session()->put('name', $user->name);
+            return redirect()->to('home')
+                ->withMessage('Logged in!');
+        }
+
+        return redirect()->to('login')
+            ->withMessage('Hmm... Your username or password is incorrect');
+    }
+
+
+    /*public function authenticate(Request $request)
     {
         if (Auth::attempt($request->only('username', 'password'))) {
             die("sds");
             return redirect()->intended('dashboard');
         }
         #$cre = $request->only('username', 'password');
-    }
+    }*/
 }

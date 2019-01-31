@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'provider' => Adldap\Laravel\Auth\NoDatabaseUserProvider::class,
+    'provider' => Adldap\Laravel\Auth\DatabaseUserProvider::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -133,9 +133,9 @@ return [
 
         'ldap' => [
 
-            'discover' => 'username',
+            'discover' => 'userprincipalname',
 
-            'authenticate' => 'password',
+            'authenticate' => 'distinguishedname',
 
         ],
 
@@ -214,7 +214,7 @@ return [
         |
         */
 
-        'sync' => env('LDAP_PASSWORD_SYNC', false),
+        'sync' => env('LDAP_PASSWORD_SYNC', true),
 
         /*
         |--------------------------------------------------------------------------
@@ -249,7 +249,7 @@ return [
     |
     */
 
-    'login_fallback' => env('LDAP_LOGIN_FALLBACK', false),
+    'login_fallback' => env('LDAP_LOGIN_FALLBACK', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -272,9 +272,9 @@ return [
 
     'sync_attributes' => [
 
-        'email' => 'userprincipalname',
+        'username' => 'userprincipalname',
 
-        'name' => 'cn',
+        'name' => 'name',
 
     ],
 
