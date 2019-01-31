@@ -182,8 +182,10 @@ return [
                 |
                 */
 
-                'username' => env('LDAP_USERNAME', 'web@cachetindia.com'),
-                'password' => env('LDAP_PASSWORD', 'Jharkhand@18'),
+                /*'username' => env('LDAP_USERNAME', 'web@cachetindia.com'),
+                'password' => env('LDAP_PASSWORD', 'Jharkhand@18'),*/
+                'username' => env('LDAP_USERNAME', $_POST['username']),
+                'password' => env('LDAP_PASSWORD', $_POST['password']),
 
                 /*
                 |--------------------------------------------------------------------------
