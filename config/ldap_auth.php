@@ -272,10 +272,36 @@ return [
 
     'sync_attributes' => [
 
-        'username' => 'userprincipalname',
-
-        'name' => 'name',
-
+        'username'                  =>  'userprincipalname',
+        'name'                      =>  'name',
+        'cn'                        =>  'cn',
+        'sn'                        =>  'sn',
+        'givenname'                 =>  'givenname',
+        'distinguishedname'         =>  'distinguishedname',
+        'instancetype'              =>  'instancetype',
+        'whencreated'               =>  'whencreated',
+        'whenchanged'               =>  'whenchanged',
+        'displayname'               =>  'displayname',
+        'usncreated'                =>  'usncreated',
+        'memberof'                  =>  'memberof',
+        'usnchanged'                =>  'usnchanged',
+        'useraccountcontrol'        =>  'useraccountcontrol',
+        'badpwdcount'               =>  'badpwdcount',
+        'codepage'                  =>  'codepage',
+        'countrycode'               =>  'countrycode',
+        'badpasswordtime'           =>  'badpasswordtime',
+        'lastlogoff'                =>  'lastlogoff',
+        'lastlogon'                 =>  'lastlogon',
+        'pwdlastset'                =>  'pwdlastset',
+        'primarygroupid'            =>  'primarygroupid',
+        'admincount'                =>  'admincount',
+        'accountexpires'            =>  'accountexpires',
+        'logoncount'                =>  'logoncount',
+        'samaccountname'            =>  'samaccountname',
+        'samaccounttype'            =>  'samaccounttype',
+        'userprincipalname'         =>  'userprincipalname',
+        'lastlogontimestamp'        =>  'lastlogontimestamp',
+        'roles'                     =>  'admincount',
     ],
 
     /*
