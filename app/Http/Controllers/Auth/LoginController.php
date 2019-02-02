@@ -48,10 +48,10 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('username', 'password'))) {
-
             // Returns \App\User model configured in `config/auth.php`.
             $user = Auth::user();
             $request->session()->put('name', $user->name);
+            $request->session()->put('username', $user->username);
             return redirect()->to('home')
                 ->withMessage('Logged in!');
         }
@@ -59,14 +59,4 @@ class LoginController extends Controller
         return redirect()->to('login')
             ->withMessage('Hmm... Your username or password is incorrect');
     }
-
-
-    /*public function authenticate(Request $request)
-    {
-        if (Auth::attempt($request->only('username', 'password'))) {
-            die("sds");
-            return redirect()->intended('dashboard');
-        }
-        #$cre = $request->only('username', 'password');
-    }*/
 }
