@@ -23,14 +23,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-    	/*Auth::logout();
-    	return redirect('/login');*/
-    	dd($request->session()->get('name'));
-    	echo "<pre>";
-    	print_r($this->ldap->search()->users()->get($request->session()->all()));
-    	exit;
-    	#Auth::logout();
-    	#return redirect('/login');
+        return "Logged in.";
     }
  
 }

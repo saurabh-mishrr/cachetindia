@@ -302,6 +302,15 @@ return [
         'userprincipalname'         =>  'userprincipalname',
         'lastlogontimestamp'        =>  'lastlogontimestamp',
         'roles'                     =>  'admincount',
+        #'emp_code'                  =>  '',
+        'designation'               =>  'memberof',
+        'department'                =>  'memberof',
+        'date_of_birth'             =>  '',
+        'location'                  =>  '',
+        #'mobile_no'                 =>  '',
+        'email_id'                  =>  'userprincipalname',
+
+
     ],
 
     /*

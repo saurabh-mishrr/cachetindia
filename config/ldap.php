@@ -182,8 +182,10 @@ return [
                 |
                 */
 
-                'username' => env('LDAP_USERNAME', !empty($_POST['username']) ? $_POST['username'] : ''),
-                'password' => env('LDAP_PASSWORD', !empty($_POST['password']) ? $_POST['password'] : ''),
+                /*'username' => env('LDAP_USERNAME', !empty($_POST['username']) ? $_POST['username'] : ''),
+                'password' => env('LDAP_PASSWORD', !empty($_POST['password']) ? $_POST['password'] : ''),*/
+                'username' => env('LDAP_USERNAME'),
+                'password' => env('LDAP_PASSWORD'),
 
                 /*
                 |--------------------------------------------------------------------------
