@@ -75,27 +75,11 @@
 		<div class="card">
 			<div class="card-header bg-red">Photo Gallery</div>
 			<div class="card-body galley-section">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-						  {{ HTML::image('images/gallery.jpg', 'name',array('width'=>1100,'height'=>500)) }}
+				<div class="bxslider">
+				@foreach($gallarydata as $data)
+				  <div> {{ HTML::image('images/events/'.$data->pic, 'name',array('width'=>300,'height'=>300)) }}
 						</div>
-						<div class="carousel-item">
-						  {{ HTML::image('images/gallery.jpg', 'name',array('width'=>1100,'height'=>500)) }}
-						
-						</div>
-						<div class="carousel-item">
-						  {{ HTML::image('images/gallery.jpg', 'name',array('width'=>1100,'height'=>500)) }}
-						
-						</div>
-					</div>
-					  
-					<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span>
-					</a>
-					<a class="carousel-control-next" href="#myCarousel" data-slide="next">
-						<span class="carousel-control-next-icon"></span>
-					</a>
+						@endforeach
 				</div>
 			</div>			    
 		</div>
@@ -127,9 +111,15 @@
 				
 			<div class="card">
 				<div class="card-header bg-blue">Quote for a thought</div>
-				<div class="card-body quote-section">
+				<div class="card-body quote-section today-quotes">
 					<div class="quote">
-						  {{ HTML::image('images/quote.png','quote') }}
+						<h5>
+							<?php echo $quotes['description'];?>
+						</h5>
+						<center><h5>
+							<?php echo $quotes['title'];?>
+						</h5>	
+						</center>
 					</div>
 				</div> 
 				
@@ -140,9 +130,11 @@
 			<div class="card">
 				<div class="card-header bg-red">News & Events</div>
 				<div class="card-body list-section">
-					<ul>
-						<li>Lorem Ipsum is simply dummy text of  the printing and typesetting industry.</li> 
-						<li>Lorem Ipsum is simply dummy text of  the printing and typesetting industry.</li> 
+					<ul class="newsslider">
+						<?php
+						foreach ($newsdata as  $key => $value) {
+         		      		echo '<li type="square">'.$value['title'].'</li>';
+  						} ?>
 					</ul>
 				</div> 
 				
@@ -153,7 +145,13 @@
 				<div class="card-body birthday-section">
 					@foreach ($birthWishesData as $data)
 						<div class="media border p-3">
-						 <img src="images/{{$data->profile_pic}}" class="mr-3 rounded-circle"></img>
+						@if(file_exists("images/user/".$data->profile_pic)) 
+						   	{{ HTML::image('images/user/'.$data->profile_pic,'user pic',array("class"=>'mr-3 rounded-circle')) }}
+	
+						@else
+						   	{{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle')) }}
+	
+						@endif
 							<div class="media-body">
 							  <h4>{{$data->emp_name}}</h4>
 							  <p>{{$data->comment}}</p>      

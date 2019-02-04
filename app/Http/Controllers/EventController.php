@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EventMaster;
+use App\EventGallery;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +15,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events =  EventMaster::where('status', '1')
+               ->orderBy('created_on', 'desc')
+             //  ->take(10)
+               ->get();
+              // dd($events);
+        return view('admin.event.view',array('event'=>$events));
     }
 
     /**
@@ -24,7 +30,7 @@ class EventController extends Controller
      */
     public function create()
     {
-         return view('admin.create-event');
+         return view('admin.event.create');
     }
 
     /**
@@ -35,10 +41,52 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required',
             'pic' => 'required',
+            'pic.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
         ]);
+
+        $event_data =new EventMaster();
+        $event_data->name = $request->get('name');
+        $event_data->type = $request->get('type')=="" ? "no type":$request->get('type');
+        $event_data->status = '1';
+        $event_data->created_by = "";
+        $event_data->updated_by = "";
+        $event_data->created_on = date('Y-m-d h:i:s');
+        $event_data->updated_on = date('Y-m-d h:i:s');
+        $event_data->save();
+
+        if($request->hasfile('pic'))
+         {
+
+            foreach($request->file('pic') as $image)
+            {
+                $name=$image->getClientOriginalName();
+                $image->move(public_path().'/images/events/', $name);  
+                $gallery_data =new EventGallery();
+                $gallery_data->event_id = $event_data->id;
+                $gallery_data->pic = $name;
+                $gallery_data->status = '1';
+                $gallery_data->created_by = "";
+                $gallery_data->updated_by = "";
+                $gallery_data->created_on = date('Y-m-d h:i:s');
+                $gallery_data->updated_on = date('Y-m-d h:i:s');
+                $gallery_data->save();
+         
+            }
+        }
+
+        $events =  EventMaster::where('status', '1')
+               ->orderBy('created_on', 'desc')
+             //  ->take(10)
+               ->get();
+              // dd($events);
+        return view('admin.event.view',array('event'=>$events));
+   
+      
+      //  return back()->with('success', 'Your images has been successfully');
 
     }
 
@@ -82,8 +130,20 @@ class EventController extends Controller
      * @param  \App\EventMaster  $eventMaster
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EventMaster $eventMaster)
-    {
-        //
+    public function destroy(Request $request,EventMaster $eventMaster)
+    {  
+        EventMaster::where('event_id',$request->event)
+          ->update(['status' => '0']);
+        
+        EventGallery::where('event_id',$request->event)
+          ->update(['status' => '0']);
+
+        $events =  EventMaster::where('status', '1')
+               ->orderBy('created_on', 'desc')
+             //  ->take(10)
+               ->get();
+              // dd($events);
+        return view('admin.event.view',array('event'=>$events));
+    
     }
 }

@@ -23,7 +23,7 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource("events","EventController");
+
 
 // these are backends routes.
 Route::namespace('Backends')->group(function() {
@@ -36,3 +36,6 @@ Route::namespace('Backends')->group(function() {
 	Route::post('/upload-salary-slips', 'FileTrailController@uploadSalarySlips')->name('upload-slips');
 });
 
+Route::resource("/events","EventController");
+
+Route::resource("/gallery","EventGalleryController");

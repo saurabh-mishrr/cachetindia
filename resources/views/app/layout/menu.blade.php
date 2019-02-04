@@ -5,6 +5,10 @@
     </div>
    
     <ul class="nav navbar-nav navbar-right">
+     <!-- <li class="nav-item">
+          {{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle','height'=>40,'width'>70)) }}
+  
+      </li>-->
     	<li class="nav-item">
         <a class="nav-link" href="#">Welcome Ashish</a>
       </li> 

@@ -391,3 +391,9 @@ section .section-title {
   }
 }
 
+.today-quotes{
+  /*background-image:url('../images/quotes.jpeg');
+  background-repeat:no-repeat;
+  width:100%;*/
+  background-color: #ccc;
+}

@@ -60,3 +60,5 @@
 		</div>
 	</section>
 	<!-- ./Footer -->
+
+  {{ HTML::script('js/core.js') }}
