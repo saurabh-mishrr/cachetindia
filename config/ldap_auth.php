@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'provider' => Adldap\Laravel\Auth\NoDatabaseUserProvider::class,
+    'provider' => Adldap\Laravel\Auth\DatabaseUserProvider::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -133,9 +133,9 @@ return [
 
         'ldap' => [
 
-            'discover' => 'username',
+            'discover' => 'userprincipalname',
 
-            'authenticate' => 'password',
+            'authenticate' => 'distinguishedname',
 
         ],
 
@@ -214,7 +214,7 @@ return [
         |
         */
 
-        'sync' => env('LDAP_PASSWORD_SYNC', false),
+        'sync' => env('LDAP_PASSWORD_SYNC', true),
 
         /*
         |--------------------------------------------------------------------------
@@ -249,7 +249,7 @@ return [
     |
     */
 
-    'login_fallback' => env('LDAP_LOGIN_FALLBACK', false),
+    'login_fallback' => env('LDAP_LOGIN_FALLBACK', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -272,10 +272,36 @@ return [
 
     'sync_attributes' => [
 
-        'email' => 'userprincipalname',
-
-        'name' => 'cn',
-
+        'username'                  =>  'userprincipalname',
+        'name'                      =>  'name',
+        'cn'                        =>  'cn',
+        'sn'                        =>  'sn',
+        'givenname'                 =>  'givenname',
+        'distinguishedname'         =>  'distinguishedname',
+        'instancetype'              =>  'instancetype',
+        'whencreated'               =>  'whencreated',
+        'whenchanged'               =>  'whenchanged',
+        'displayname'               =>  'displayname',
+        'usncreated'                =>  'usncreated',
+        'memberof'                  =>  'memberof',
+        'usnchanged'                =>  'usnchanged',
+        'useraccountcontrol'        =>  'useraccountcontrol',
+        'badpwdcount'               =>  'badpwdcount',
+        'codepage'                  =>  'codepage',
+        'countrycode'               =>  'countrycode',
+        'badpasswordtime'           =>  'badpasswordtime',
+        'lastlogoff'                =>  'lastlogoff',
+        'lastlogon'                 =>  'lastlogon',
+        'pwdlastset'                =>  'pwdlastset',
+        'primarygroupid'            =>  'primarygroupid',
+        'admincount'                =>  'admincount',
+        'accountexpires'            =>  'accountexpires',
+        'logoncount'                =>  'logoncount',
+        'samaccountname'            =>  'samaccountname',
+        'samaccounttype'            =>  'samaccounttype',
+        'userprincipalname'         =>  'userprincipalname',
+        'lastlogontimestamp'        =>  'lastlogontimestamp',
+        'roles'                     =>  'admincount',
     ],
 
     /*

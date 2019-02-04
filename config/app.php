@@ -178,6 +178,8 @@ return [
         Wilgucki\Csv\CsvServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
 
+        App\Providers\RepositoryServiceProvider::class,
+
     ],
 
     /*
