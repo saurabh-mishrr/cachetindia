@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -45,18 +45,18 @@ class LoginController extends Controller
         return 'username';
     }
 
-    public function login(Request $request)
+    /*public function authenticate(Request $request)
     {
         if (Auth::attempt($request->only('username', 'password'))) {
             // Returns \App\User model configured in `config/auth.php`.
             $user = Auth::user();
             $request->session()->put('name', $user->name);
             $request->session()->put('username', $user->username);
-            return redirect()->to('home')
-                ->withMessage('Logged in!');
+            // return redirect()->to('home')
+            //     ->withMessage('Logged in!');
+            #return $this->redirectTo();
         }
-
-        return redirect()->to('login')
-            ->withMessage('Hmm... Your username or password is incorrect');
-    }
+        #return redirect()->to('login')
+           # ->withMessage('Hmm... Your username or password is incorrect');
+    }*/
 }

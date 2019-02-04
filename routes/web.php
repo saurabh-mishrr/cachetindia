@@ -16,31 +16,34 @@ Route::get('userdesk','UserDashboardController@index');
 Auth::routes([
    'reset' => false,
    'verify' => false,
-   'register' => false,
 ]);
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::resource("events","EventController");
 
+Route::get('/', 'HomeController@index')->name('home')->middleware(['auth', 'check-permission:user|admin']);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/register', 'Auth\RegisterController@addUserToLdap')->name('register')->middleware(['auth', 'check-permission:admin']);
 
-Route::group(['middleware' => ['auth', 'check-permission:user']], function() {
-	Route::get('/', 'HomeController@index')->name('home');
-});
-
-
+Route::post('/register', 'Auth\RegisterController@create')->name('register')->middleware(['auth', 'check-permission:admin']);
 
 // these are backends routes.
 Route::namespace('Backends')->group(function() {
-	Route::group(['middleware' => ['auth', 'check-permission:admin']], function() {
+	Route::group(['middleware' => ['auth']], function() {
+
+		
+
 		Route::resource("filetrail","FileTrailController", [
 			'names' => [
 				'create' => 'salary.create',
 			]
-		]);
-		Route::get('/upload-salary-slips/{id}', 'FileTrailController@salarySlipUploadPage')->name('upload-salary-slips');
-		Route::post('/upload-salary-slips', 'FileTrailController@uploadSalarySlips')->name('upload-slips');
+		])->middleware('check-permission:admin');
+
+		Route::get('/upload-salary-slips/{id}', 'FileTrailController@salarySlipUploadPage')->name('upload-salary-slips')->middleware('check-permission:admin');
+
+		Route::post('/upload-salary-slips', 'FileTrailController@uploadSalarySlips')->name('upload-slips')->middleware('check-permission:admin');
 	});
 });
 
-Route::resource("/events","EventController");
+Route::resource("/events","EventController")->middleware(['auth', 'check-permission:admin']);
 
 Route::resource("/gallery","EventGalleryController");

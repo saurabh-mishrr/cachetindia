@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Adldap\Laravel\Traits\HasLdapUser;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasLdapUser;
 
     /**
      * The attributes that are mass assignable.
@@ -28,8 +29,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-/*    public function setPasswordAttribute($password)
-{
-    $this->attributes['password'] = $password;
-}*/
+    
 }
