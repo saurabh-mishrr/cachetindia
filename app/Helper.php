@@ -1,4 +1,6 @@
  <?php
+
+ 
 	if(!function_exists('getUrlData')){
 		function getUrlData($url, $proxy = "", $cacheKey = '', $header = null) {
 		   $data = '';
@@ -18,5 +20,39 @@
 	       curl_close($ch);   // Close cURL.
 	       return $data;
 	   }
+	}
+
+
+	if (!function_exists('checkPermission'))
+	{
+
+		function checkPermission($permissions)
+		{
+			$userAccess = getMyPermission(auth()->user()->memberof);
+			foreach ($permissions as $key => $value) {
+				if ($value == $userAccess) {
+					return true;
+				}
+			}
+		}
+
+	}
+
+	if (!function_exists('getMyPermission')) 
+	{
+		function getMyPermission($role)
+		{
+			switch ($role) {
+				case 'CN=Administrators,CN=Builtin,DC=CACHETINDIA,DC=COM':
+					return 'admin';
+					break;
+				case 'CN=ACCOUNTS,OU=Accounts,OU=Head Office,DC=CACHETINDIA,DC=COM':
+	                return 'accounts';
+	                break;
+				default:
+					return 'user';
+					break;
+			}
+		}
 	}
 ?>   
