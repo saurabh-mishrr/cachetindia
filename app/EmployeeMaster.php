@@ -9,19 +9,21 @@ use DB;
 class EmployeeMaster extends Model
 {
 
-    protected $table = 'employee_master';
+    protected $table = 'users';
 
     public $timestamps = false;
 
-   //use for retrive emp details.
+    //use for retrive emp details.
     public function getBirthWishesData(){
-       $empdata =  DB::table('employee_master')
-            ->join('emp_bod_wishes_detail', 'employee_master.emp_id', '=', 'emp_bod_wishes_detail.emp_id')
-            ->select('employee_master.emp_id', 'employee_master.emp_name', 'employee_master.profile_pic','emp_bod_wishes_detail.comment')
+        $empdata =  DB::table('users')
+            ->join('emp_bod_wishes_detail', 'users.id', '=', 'emp_bod_wishes_detail.emp_id')
+            ->select('users.id', 'users.name', 'users.photo','emp_bod_wishes_detail.comment')
             ->orderBy('emp_bod_wishes_detail.created_on','desc')
-            ->take(5)
+            ->take(3)
             ->get();  
-                    return $empdata;
+        return $empdata;
      
     }
+
+
 }

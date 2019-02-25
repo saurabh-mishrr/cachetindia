@@ -12,25 +12,25 @@
 						<div class="menu-list">  
 							<ul id="menu-content" class="menu-content collapse out">
 								<li>
-									<a href="index.html"><i class="fas fa-tachometer-alt fa-lg"></i> Home </a>
+									<a href="{{Config::get('constants.links.home')}}"><i class="fas fa-tachometer-alt fa-lg"></i> Home </a>
 								</li>
 
 							<li  data-toggle="collapse" data-target="#products" class="collapsed">
 							  <a href="#"><i class="fab fa-studiovinari fa-lg"></i> My Apps <span class="arrow"></span></a>
 							</li>
 							<ul class="sub-menu collapse" id="products">
-								<li class="active"><a href="#">Email</a></li>
-								<li class="active"><a href="#">Attendance</a></li>
-								<li class="active"><a href="#">Hi Doctor</a></li>
+								<li class="active"><a href="{{Config::get('constants.links.mail')}}">Email</a></li>
+								<li class="active"><a href="{{Config::get('constants.links.attendance')}}">Attendance</a></li>
+								<li class="active"><a href="{{Config::get('constants.links.doctor')}}">Hi Doctor</a></li>
 							</ul>
 
 							<li data-toggle="collapse" data-target="#service" class="collapsed">
 							  <a href="#"><i class="fab fa-fort-awesome-alt fa-lg"></i> Payroll <span class="arrow"></span></a>
 							</li>  
 							<ul class="sub-menu collapse" id="service">
-								<li class="active"><a href="#">Salary Slip</a></li>
-								<li class="active"><a href="#">Form 16</a></li>
-								<li class="active"><a href="#">Investment Declartion</a></li>
+								<li class="active"><a href="{{action('UserDashboardController@downloadSalary') }} "  class="sal-slip">Salary Slip</a></li>
+								<li class="active"><a href="#"  class="form-16"target="downloadFrame">Form 16</a></li>
+								<li class="active"><a href="#"  class="invest-dec" target="downloadFrame">Investment Declartion</a></li>
 							</ul>
 
 
@@ -89,11 +89,7 @@
 			<div class="card">
 				<div class="card-header bg-blue">Welcome to Cachet Employee Portal </div>
 				<div class="card-body welcome-section">
-					<p class="darkinfo">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<p class="darkinfo">{{ $achievedata[0]->content }}
 
  					</p>
 				</div> 
@@ -103,7 +99,7 @@
 			<div class="card">
 				<div class="card-header bg-blue">Achivements</div>
 				<div class="card-body achivements-section">
-					  {{ HTML::image('images/achivement.jpg','Achivements') }}
+					  {{ HTML::image('images/'.$achievedata[0]->pic,'Achivements') }}
 						
 				</div> 
 				
@@ -145,27 +141,24 @@
 				<div class="card-body birthday-section">
 					@foreach ($birthWishesData as $data)
 						<div class="media border p-3">
-						@if(file_exists("images/user/".$data->profile_pic)) 
-						   	{{ HTML::image('images/user/'.$data->profile_pic,'user pic',array("class"=>'mr-3 rounded-circle')) }}
+						@if(file_exists("images/user/".$data->photo)) 
+						   	{{ HTML::image('images/user/'.$data->photo,'user pic',array("class"=>'mr-3 rounded-circle')) }}
 	
 						@else
 						   	{{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle')) }}
 	
 						@endif
 							<div class="media-body">
-							  <h4>{{$data->emp_name}}</h4>
+							  <h4>{{$data->name}}</h4>
 							  <p>{{$data->comment}}</p>      
 							</div>
 						</div>
 					@endforeach	
-				
-					
-					
 				</div> 
 				
 			</div>
 				
-			<div class="card">
+			<!--<div class="card">
 				<div class="card-header bg-red">Important Notice</div>
 				<div class="card-body list-section">
 					<ul>
@@ -174,53 +167,29 @@
 					</ul>
 				</div> 
 				
-			</div>
+			</div>-->
 
 			
 			<div class="card">
 				<div class="card-header bg-red">New Joinee</div>
 				<div class="card-body joinee-section">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-						  <!-- The slideshow -->
-						  <div class="carousel-inner">
-							<div class="carousel-item active">
-							  	{{ HTML::image('images/1.jpg','name',array("width"=>1100, "height"=>500)) }}
-	
-							  <div class="carousel-caption">
-								<h3>Joinee Name</h3>
-								<p>Department Name</p>
-							  </div>
+					<div class="joinslider">
+				  			<div> 
+					  		   	{{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle',"title"=>"<h5>Joinee Name</h5>
+								<p>Department Name</p>")) }}
 							</div>
-							<div class="carousel-item">
-								{{ HTML::image('images/1.jpg','name',array("width"=>1100, "height"=>500)) }}
-							    <div class="carousel-caption">
-								<h3>Joinee Name</h3>
-								<p>Department Name</p>
-							  </div>
+							<div> 
+					  		   	{{ HTML::image('images/user/1.jpg','user pic',array("class"=>'mr-3 rounded-circle',"title"=>"<h5>Jayesh</h5>
+								<p>Account</p>")) }}
 							</div>
-							<div class="carousel-item">
-								{{ HTML::image('images/1.jpg','name',array("width"=>1100, "height"=>500)) }}
-	
-							  <div class="carousel-caption">
-								<h3>Joinee Name</h3>
-								<p>Department Name</p>
-							  </div>
-							</div>
-						  </div>
-						  
-						  <!-- Left and right controls -->
-						  <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						  </a>
-						  <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						  </a>
-						</div>
-					</div> 
+					</div>
+						
+				</div> 
 			</div>
 	</div>
   </div>
 </div>
 
 @stop
+
+<iframe src="" name="downloadFrame" height="200px" width="500px" style="display: none"></iframe>

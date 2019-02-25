@@ -35,10 +35,10 @@
                                     <a class="nav-link active" href="#">Employee Docs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Events</a>
+                                    <a class="nav-link" href="{{ route('events.create') }}">Events</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Birthday Wishes</a>
+                                    <a class="nav-link" href="{{ route('wishes.create') }}">Birthday Wishes</a>
                                 </li>
                             </ul>
                         </div>

@@ -14,8 +14,8 @@
 				<div class="col-xs-12 col-sm-3">
 					<h5>My Apps</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Email</a></li>
-						<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Attendance</a></li>
+						<li><a href="{{Config::get('constants.links.mail')}}"><i class="fa fa-angle-double-right"></i>Email</a></li>
+						<li><a href="{{Config::get('constants.links.attendance')}}"><i class="fa fa-angle-double-right"></i>Attendance</a></li>
 					</ul>
 
 
@@ -41,7 +41,6 @@
 					<h5>Contact</h5>
 					<ul class="list-unstyled quick-links">
 						<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>email@cachet.com</a></li>
-						
 					</ul>
 
 					<h5>Address</h5>

@@ -5,10 +5,15 @@
     </div>
    
     <ul class="nav navbar-nav navbar-right">
-     <!-- <li class="nav-item">
-          {{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle','height'=>40,'width'>70)) }}
+     <li class="nav-item">
+        @if(file_exists("images/user/".$userdata->photo) && $userdata->photo !="") 
+                {{ HTML::image('images/user/'.$userdata->photo,'user pic',array("class"=>'mr-3 rounded-circle userpic',"height"=>50,"width"=>50)) }}
   
-      </li>-->
+            @else
+               {{ HTML::image('images/user/default-user.png','user pic',array("class"=>'mr-3 rounded-circle userpic',"height"=>50,"width"=>50)) }}
+  
+          @endif
+      </li>
     	<li class="nav-item">
         <a class="nav-link" href="#">Welcome Ashish</a>
       </li> 

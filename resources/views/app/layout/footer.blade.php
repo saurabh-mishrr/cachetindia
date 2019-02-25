@@ -61,4 +61,52 @@
 	</section>
 	<!-- ./Footer -->
 
+	<!-- Modal -->
+<div id="picModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Profile pic</h4>
+     
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      @if ($errors->any())
+	    <div class="alert alert-danger">
+			    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+			<ul>
+			    @foreach ($errors->all() as $error)
+			        <li>{{ $error }}</li>
+			    @endforeach
+			</ul>
+		</div>
+	@endif
+      <form action="{{  action('UserDashboardController@uploadimage') }}" method="POST" enctype="multipart/form-data">
+       @csrf
+   		    <div class="form-group row">
+		    	<div class="col-sm-12">
+					<input type="file" id="photo" name="pic">
+				</div>
+		  	</div>
+		  	<div class="form-group row">
+		   		<div class="col-sm-9">
+		   		</div>
+		   		<div class="col-sm-3">
+		  		 	<button type="submit" class="btn btn-primary">Submit</button>
+		  		 </div>
+		    </div>
+		      <input name="_token" type="hidden" value="{{ csrf_token() }}">
+	  	</form>
+	  </div>
+    </div>
+
+  </div>
+</div>
+@if ($errors->any())
+<script type="text/javascript">
+		$('#picModal').modal('show');
+</script>
+@endif
   {{ HTML::script('js/core.js') }}

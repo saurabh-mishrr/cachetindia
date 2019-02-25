@@ -14,6 +14,9 @@ class BirthWishesDetail extends Model
     protected $table = 'emp_bod_wishes_detail';
     public $primaryKey = 'wishes_idPrimary';
     public $timestamps = false;
+    // protected $fillable = [
+    //     'emp_id','comment'
+    // ];
 
   
 }

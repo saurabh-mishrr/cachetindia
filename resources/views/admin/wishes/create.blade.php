@@ -7,7 +7,7 @@
 
         <div class="pull-left">
 
-            <h2>Add New Event</h2>
+            <h2>Employee birthday wishes</h2>
 
         </div>
 
@@ -43,40 +43,31 @@
 
 @endif
 
-   
-
-<form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('wishes.store') }}" method="POST">
     @csrf
-	  	
-
-	  	<div class="form-group row">
-	    	<label for="name" class="col-sm-2 col-form-label">Event Name</label>
+		<div class="form-group row">
+	    	<label for="name" class="col-sm-2 col-form-label">Employee name</label>
 	    	<div class="col-sm-8">
-	      		<input type="text" class="form-control" id="name" placeholder="Enter Event Name">
+	      		<select class="form-control" id="emp_id" name="emp_id">
+	      			@foreach ($empDetails as $key=>$empdata)
+	      				<option value="{{$empdata['id']}}">{{$empdata['name']}}</option>
+	      			@endforeach	
+	      		</select>
 	    	</div>
 	  	</div>
 	  	<div class="form-group row">
-	    	<label for="type" class="col-sm-2 col-form-label">Event Type</label>
+	    	<label for="type" class="col-sm-2 col-form-label">Comment</label>
 	    	<div class="col-sm-8">
-	      		<input type="text" class="form-control" id="type" placeholder="Enter Event type">
+				<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
 	    	</div>
 	  	</div>
-	  	 <div class="form-group row">
-	    	<label for="photo" class="col-sm-2 col-form-label">Event Photos</label>
-	    	<div class="col-sm-8">
-				<input type="file" id="photo" name="pic[]	" multiple>
-				
-			</div>
-	  	</div> 
-
-
-	   	<div class="form-group row">
+	  	<div class="form-group row">
 	   		<div class="col-sm-2">
 	   		</div>
 	   		<div class="col-sm-8">
 	  		 	<button type="submit" class="btn btn-primary">Submit</button>
 	  		 </div>
 	    </div>
- 
-</form>
+	    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+ </form>
 @stop

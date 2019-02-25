@@ -12,7 +12,8 @@
 */
 
 
-Route::get('userdesk','UserDashboardController@index');
+Route::get('userdesk','UserDashboardController@index')->middleware(['auth', 'check-permission:admin']);
+//Route::get('userdesk','UserDashboardController@index');
 Auth::routes([
    'reset' => false,
    'verify' => false,
@@ -44,6 +45,16 @@ Route::namespace('Backends')->group(function() {
 	});
 });
 
-Route::resource("/events","EventController")->middleware(['auth', 'check-permission:admin']);
+//Route::resource("/events","EventController")->middleware(['auth', 'check-permission:admin']);
+
+Route::resource("/events","EventController");
+
+Route::resource("/wishes","EmplyoeeBirthWishseController");
 
 Route::resource("/gallery","EventGalleryController");
+
+Route::resource("/achievement","AchievementController");
+
+Route::post('/uploadimage','UserDashboardController@uploadimage')->middleware(['auth', 'check-permission:admin']);
+
+Route::get('/downloadSalary','UserDashboardController@downloadSalary')->middleware(['auth', 'check-permission:admin']);
