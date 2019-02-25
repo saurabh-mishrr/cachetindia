@@ -1,4 +1,6 @@
-<?php namespace Repositories;
+<?php 
+
+namespace Repositories;
 
 use App\Models\FileTrail;
 use Interfaces\FileTrailRepositoryInterface;

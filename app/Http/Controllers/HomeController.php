@@ -23,7 +23,18 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        return "Logged in.";
+        $role = Auth::user()->memberof;
+        switch ($role) {
+            case 'CN=Administrators,CN=Builtin,DC=CACHETINDIA,DC=COM':
+                echo "hsdk"; exit;
+                break;
+            case 'CN=ACCOUNTS,OU=Accounts,OU=Head Office,DC=CACHETINDIA,DC=COM':
+                return redirect()->route('salary.create');
+                break;
+            default:
+                return redirect('login');
+                break;
+        }
     }
  
 }
