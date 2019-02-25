@@ -18,16 +18,18 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            $role = Auth::user()->roles;
+            /*$role = Auth::user()->memberof;
             switch ($role) {
-                case '1':
+                case 'CN=Administrators,CN=Builtin,DC=CACHETINDIA,DC=COM':
                     return redirect()->route('home');
                     break;
-                
+                case 'CN=ACCOUNTS,OU=Accounts,OU=Head Office,DC=CACHETINDIA,DC=COM':
+                    return redirect()->route('salary.create');
+                    break;
                 default:
                     return redirect('login');
                     break;
-            }
+            }*/
         }
 
         return $next($request);
