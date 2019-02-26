@@ -39,9 +39,11 @@ Route::namespace('Backends')->group(function() {
 			]
 		])->middleware('check-permission:accounts');
 
-		Route::get('/upload-salary-slips/{id}', 'FileTrailController@salarySlipUploadPage')->name('upload-salary-slips')->middleware('check-permission:accounts');
+		Route::get('/upload-salary-slips/{id}/{type}', 'FileTrailController@salarySlipUploadPage')->name('upload-salary-slips')->middleware('check-permission:accounts');
 
-		Route::post('/upload-salary-slips', 'FileTrailController@uploadSalarySlips')->name('upload-slips')->middleware('check-permission:accounts');
+		Route::post('/upload-files', 'FileTrailController@uploadFiles')->name('upload-files')->middleware('check-permission:accounts');
+
+		Route::get('/upload-form-16/{id}/{type}', 'FileTrailController@form16UploadPage')->name('upload-form-16')->middleware('check-permission:accounts');
 	});
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backends;
 
 use App\Models\FileTrail;
 use App\Models\SalarySlip;
+use App\Models\TaxForm;
 use Illuminate\Http\Request;
 use App\Http\Requests\FileTrailUploadRequest;
 use Illuminate\Support\Facades\Storage;
@@ -72,10 +73,10 @@ class FileTrailController extends Controller
         }
         DB::commit();
         if ($request->type_of_upload == "salary_slip") {
-            return redirect()->route('upload-salary-slips', ['id' => $model->id]);
+            return redirect()->route('upload-salary-slips', ['id' => $model->id, 'type' => 'salary']);
         }
         
-        return redirect()->route('/upload-form-16', ['id' => $model->id]);
+        return redirect()->route('upload-form-16', ['id' => $model->id, 'type' => 'form-16']);
     }
 
     /**
@@ -126,11 +127,11 @@ class FileTrailController extends Controller
     public function salarySlipUploadPage(Request $request)
     {
         
-        return view('admin.file_trail.salary_upload', ['id' => $request->id]);
+        return view('admin.file_trail.salary_upload', ['id' => $request->id, 'type' => 'salary']);
         
     }
 
-    public function uploadSalarySlips(Request $request)
+    public function uploadFiles(Request $request)
     {
         if ($request->isMethod('post')) {
             $record = FileTrail::find($request->id);
@@ -140,7 +141,15 @@ class FileTrailController extends Controller
                 $tarFilePath = $storagePath.$record->tar_file_path;
                 $extractToPath = $storagePath.'/'.date('d-m-Y', strtotime($record->created_at));
                 
-                $errorMsg = "Salary Slip not exist for Emp_id: ";
+                if ($request->type == 'salary') {
+                    $errorMsg = 'Salary Slip';
+                    $model = new SalarySlip;
+                } elseif ($request->type == 'form-16') {
+                    $errorMsg = 'Form-16';
+                    $model = new TaxForm;
+                }
+
+                $errorMsg = $errorMsg . " not exist for Emp_id: ";
                 
                 \Zipper::make($tarFilePath)->extractTo($extractToPath);
                 $reader = CsvReader::open($storagePath.$record->csv_file_path);
@@ -156,7 +165,8 @@ class FileTrailController extends Controller
                         } else {
                             
                             try {
-                                SalarySlip::create([
+
+                                $model::create([
                                     'emp_id'            =>     $csvFileData[$i][0],
                                     'uploaded_by'       =>     1,
                                     'file_name'         =>     $extractToPath.'/'.$csvFileData[$i][1],
@@ -179,10 +189,17 @@ class FileTrailController extends Controller
                 $record->status = "success";
                 $record->save();
                 DB::commit();
-                return redirect()->route('salary.create')->with('success', 'Salary slips uploaded successfully.')->with('error', $errorMsg);
+                return redirect()->route('salary.create')->with('success', $errorMsg . ' uploaded successfully.')->with('error', $errorMsg);
             } else {
                 return redirect()->route('salary.create')->with('error', 'Invalid request.');
             }
         }
+    }
+
+    public function form16UploadPage(Request $request)
+    {
+        
+        return view('admin.file_trail.salary_upload', ['id' => $request->id, 'type' => 'form-16']);
+        
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<h1>Please wait...salary slips uploading</h1>
+	<h1>Please wait...uploading is in progress.</h1>
 	<span>Warning: Do not refresh or close this operation.</span>
 
 	<div class="progress">
@@ -14,9 +14,10 @@
 
 	<div id="status"></div>
 
-	<form action="{{ route('upload-slips') }}" method="POST">
+	<form action="{{ route('upload-files') }}" method="POST">
 		@csrf
 		<input type="hidden" name="id" value="{{ $id }}">
+		<input type="hidden" name="type" value="{{ $type }}">
 	</form>
 
 @endsection('content')
