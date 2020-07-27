@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backends;
 
 use App\Models\FileTrail;
 use App\Models\SalarySlip;
+use App\Models\TaxForm;
 use Illuminate\Http\Request;
 use App\Http\Requests\FileTrailUploadRequest;
 use Illuminate\Support\Facades\Storage;
@@ -72,10 +73,10 @@ class FileTrailController extends Controller
         }
         DB::commit();
         if ($request->type_of_upload == "salary_slip") {
-            return redirect()->route('upload-salary-slips', ['id' => $model->id]);
+            return redirect()->route('upload-salary-slips', ['id' => $model->id.'_'.$request->month_name]);
         }
         
-        return redirect()->route('/upload-form-16', ['id' => $model->id]);
+        return redirect()->route('upload-form-16', ['id' => $model->id]);
     }
 
     /**
@@ -129,39 +130,76 @@ class FileTrailController extends Controller
         return view('admin.file_trail.salary_upload', ['id' => $request->id]);
         
     }
+    
+    public function form16UploadPage(Request $request)
+    {
+        
+        return view('admin.file_trail.form16_upload', ['id' => $request->id]);
+        
+    }
 
     public function uploadSalarySlips(Request $request)
     {
+        $data=explode('_', $request->id);
+        $requestid=$data[0];
+        $month=$data[1];
         if ($request->isMethod('post')) {
-            $record = FileTrail::find($request->id);
+            $record = FileTrail::find($requestid);
             if ($record->status == 'pending') {
                 DB::beginTransaction();
                 $storagePath = storage_path('app').'/';
                 $tarFilePath = $storagePath.$record->tar_file_path;
-                $extractToPath = $storagePath.'/'.date('d-m-Y', strtotime($record->created_at));
-                
+                $extractToPath = $storagePath.''.date('d-m-Y', strtotime($record->created_at));
+		$tarFile = explode('/', $tarFilePath);
+                $tarFile = explode('.zip', $tarFile[count($tarFile)-1]);
+		$xtractedFolder = $tarFile[0];
+		
                 $errorMsg = "Salary Slip not exist for Emp_id: ";
-                
-                \Zipper::make($tarFilePath)->extractTo($extractToPath);
-                $reader = CsvReader::open($storagePath.$record->csv_file_path);
-                $csvFileData = array_map('array_filter', $reader->readAll());
+               
+		\Zipper::make($tarFilePath)->extractTo($extractToPath);
+/*		try {
+		$zip = \App::make(\ZipArchive::class);
+$res = $zip->open($tarFilePath);
+if ($res === TRUE) {
+  $zip->extractTo($extractToPath);
+  $zip->close();
+ 
+} else {
+	Log::error("File didn't unzip.");
+}}
+catch(\Throwable $e) {
+	Log::error($e->getMessage());
 
+}*/
+		
+		$reader = CsvReader::open($storagePath.$record->csv_file_path);
+                $csvFileData = array_map('array_filter', $reader->readAll());
+                $error=0;
                 $i = 1;
-                $data = [];
+		$data = [];		
                 while ($i < sizeof($csvFileData)) {
-                    if (file_exists($extractToPath.'/'.$csvFileData[$i][1])) {
+			$slipFilePath = $extractToPath.'/'.$xtractedFolder.'/'.$csvFileData[$i][1];
+			/*if (!file_exists($slipFilePath)) { 
+				Log::error($slipFilePath);
+			}*/	
+			if (file_exists($slipFilePath)) {
+				
                         //if emp_id's file not found before and now found.
                         if (array_key_exists($csvFileData[$i][0], $data)) {
                             unset($data[$csvFileData[$i][0]]);
                         } else {
-                            
+                            if($month=='December'){
+                                $year =$lastyear = date('Y', strtotime('-1 year'));
+                            }else{
+                                $year=date('Y');
+                            }
                             try {
                                 SalarySlip::create([
                                     'emp_id'            =>     $csvFileData[$i][0],
                                     'uploaded_by'       =>     1,
-                                    'file_name'         =>     $extractToPath.'/'.$csvFileData[$i][1],
+                                    'file_name'         =>     $slipFilePath,
                                     'status'            =>     1,
-                                    'year_month'        =>     date('Y-M'),
+                                    'year_month'        =>     $year.'-'.$month,
                                 ]);
                             } catch (Exception $e) {
                                 Log::error($e->getMessage());
@@ -171,6 +209,7 @@ class FileTrailController extends Controller
                             
                         }
                     } else {
+                        $error=1;
                         $data[$csvFileData[$i][0]] = 'false';
                         $errorMsg .= "{$csvFileData[$i][0]},";
                     }
@@ -179,7 +218,84 @@ class FileTrailController extends Controller
                 $record->status = "success";
                 $record->save();
                 DB::commit();
-                return redirect()->route('salary.create')->with('success', 'Salary slips uploaded successfully.')->with('error', $errorMsg);
+                if($error){
+                    $setError="->with('error', $errorMsg)";
+                }
+                return redirect()->route('salary.create')->with('success', 'Salary slips uploaded successfully.').$setError;
+            } else {
+                return redirect()->route('salary.create')->with('error', 'Invalid request.');
+            }
+        }
+    }
+    
+    //Upload form 16
+    public function uploadform16(Request $request)
+    {
+        $data=explode('_', $request->id);
+        $requestid=$data[0];
+        $month=$data[1];
+
+        if ($request->isMethod('post')) {
+            $record = FileTrail::find($requestid);
+            if ($record->status == 'pending') {
+                DB::beginTransaction();
+                $storagePath = storage_path('app').'/';
+                $tarFilePath = $storagePath.$record->tar_file_path;
+                $extractToPath = $storagePath.'/'.date('d-m-Y', strtotime($record->created_at));
+                $tarFile = explode('/', $tarFilePath);
+                $tarFile = explode('.zip', $tarFile[7]);
+                $xtractedFolder = $tarFile[0];
+                $errorMsg = "Salary Slip not exist for Emp_id: ";
+                
+                \Zipper::make($tarFilePath)->extractTo($extractToPath);
+                $reader = CsvReader::open($storagePath.$record->csv_file_path);
+                $csvFileData = array_map('array_filter', $reader->readAll());
+
+                // echo (sizeof($csvFileData)-1);
+                // echo $csvFileData[1][1];
+                // echo '<pre>';
+                // print_r($csvFileData);
+                // exit;
+                $error=0;
+                $i = 1;
+                $data = [];
+                while ($i < sizeof($csvFileData)) {
+                    $slipFilePath = $extractToPath.'/'.$xtractedFolder.'/'.$csvFileData[$i][1];
+                    if (file_exists($slipFilePath)) {
+                        //if emp_id's file not found before and now found.
+                        if (array_key_exists($csvFileData[$i][0], $data)) {
+                            unset($data[$csvFileData[$i][0]]);
+                        } else {
+                            
+                            try {
+                                taxform::create([
+                                    'emp_id'            =>     $csvFileData[$i][0],
+                                    'uploaded_by'       =>     1,
+                                    'file_name'         =>     $slipFilePath,
+                                    'status'            =>     1,
+                                    'year_month'        =>     date('Y').'-'.$month,
+                                ]);
+                            } catch (Exception $e) {
+                                Log::error($e->getMessage());
+                                DB::rollBack();
+                                return redirect()->route('FileTrailController@create')->withError(['msg', $e->getMessage()]);
+                            }
+                            
+                        }
+                    } else {
+                        $error=1;
+                        $data[$csvFileData[$i][0]] = 'false';
+                        $errorMsg .= "{$csvFileData[$i][0]},";
+                    }
+                    $i++;
+                }
+                $record->status = "success";
+                $record->save();
+                DB::commit();
+                if($error){
+                    $setError="->with('error', $errorMsg)";
+                }
+                return redirect()->route('salary.create')->with('success', 'Form 16 uploaded successfully.').$setError;
             } else {
                 return redirect()->route('salary.create')->with('error', 'Invalid request.');
             }

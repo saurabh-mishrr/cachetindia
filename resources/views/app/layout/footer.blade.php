@@ -1,6 +1,24 @@
+<section id="footer" style="
+    font-size: 16px;
+    min-height: 55px;
+    color: white;">
+    	<div class="container">
+<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-6">
+		    All Rights Reserved To Cachet Pharmaceuticals Pvt Ltd
+		</div>
+		<div class="col-md-2">
+		</div>
+</div>
+</div>
+</section>
+		
+
 
 <!-- Footer -->
-	<section id="footer">
+<!--	<section id="footer">
 		<div class="container">
 			<div class="row text-center text-xs-center text-sm-left text-md-left">
 				<div class="col-xs-12 col-sm-3">
@@ -58,7 +76,7 @@
 				</hr>
 			</div>	
 		</div>
-	</section>
+	</section>-->
 	<!-- ./Footer -->
 
 	<!-- Modal -->
@@ -85,12 +103,86 @@
 	@endif
       <form action="{{  action('UserDashboardController@uploadimage') }}" method="POST" enctype="multipart/form-data">
        @csrf
-   		    <div class="form-group row">
+            <div class="form-group row">
+		   		<div class="col-sm-9">
+		   		    User Profile
+		   		</div>
+		   		<div class="col-sm-3">
+		  		 </div>
+		    </div>
+		    <div class="form-group row">
 		    	<div class="col-sm-12">
 					<input type="file" id="photo" name="pic">
 				</div>
 		  	</div>
 		  	<div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Name
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->name}}
+		  		 </div>
+		    </div>
+		   <!-- <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Emo code
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->emp_code}}
+		  		 </div>
+		    </div>-->
+		    <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Designation
+		   		</div>
+		   		<div class="col-sm-9">
+		   		     {{$userdata->designation}}
+		  		 
+		  		 </div>
+		    </div>
+		    <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Department
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->department}}
+		  		 </div>
+		    
+		    </div>
+		    <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Location
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->location}}
+		  		 </div>
+		    </div>
+		    <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Date of birth
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->date_of_birth}}
+		  		 </div>
+		    </div>
+		     <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Mobile number
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->mobile_no}}
+		  		 </div>
+		    </div>
+		    <div class="form-group row">
+		   		<div class="col-sm-3">
+		   		    Email address
+		   		</div>
+		   		<div class="col-sm-9">
+		   		    {{$userdata->email_id}}
+		  		 </div>
+		    </div>
+            		    
+   		    <div class="form-group row">
 		   		<div class="col-sm-9">
 		   		</div>
 		   		<div class="col-sm-3">

@@ -40,6 +40,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('wishes.create') }}">Birthday Wishes</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('salary.create') }}">Upload Salary Slips</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

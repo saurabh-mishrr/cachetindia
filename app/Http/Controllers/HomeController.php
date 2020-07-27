@@ -24,9 +24,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $role = Auth::user()->memberof;
+        //dd($role);
         switch ($role) {
             case 'CN=Administrators,CN=Builtin,DC=CACHETINDIA,DC=COM':
-                echo "hsdk"; exit;
+                
                 break;
             case 'CN=ACCOUNTS,OU=Accounts,OU=Head Office,DC=CACHETINDIA,DC=COM':
                 return redirect()->route('salary.create');

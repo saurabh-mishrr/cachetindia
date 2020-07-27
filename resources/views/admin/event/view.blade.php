@@ -9,6 +9,7 @@
 <div class="pull-right">
 <a class="btn btn-success" href="{{ route('events.create') }}"> Create New Event</a>
 </div>
+<br>
 </div>
 </div>
 <!-- @if ($message = Session::get('success'))

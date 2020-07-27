@@ -1,0 +1,69 @@
+[12-Mar-2019 00:04:47 Asia/Kolkata] PHP Warning:  Uncaught ErrorException: require_once(/home/mycac9tt/cachet//database/migations/2014_10_12_000000_create_users_table.php): failed to open stream: No such file or directory in /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:98
+Stack trace:
+#0 /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(98): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require_once(/h...', '/home/mycac9tt/...', 98, Array)
+#1 /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(98): require_once()
+#2 /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(448): Illuminate\Filesystem\Filesystem->requireOnce('/home/mycac9tt/...')
+#3 /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(90): Illuminate\Database\Migrations\Migrator->requireFiles(Array)
+#4 /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Database/Console/ in /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 98
+[12-Mar-2019 00:04:47 Asia/Kolkata] PHP Fatal error:  Illuminate\Filesystem\Filesystem::requireOnce(): Failed opening required '/home/mycac9tt/cachet//database/migations/2014_10_12_000000_create_users_table.php' (include_path='.:/opt/alt/php71/usr/share/pear') in /home/mycac9tt/cachet/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 98
+[21-Jul-2019 10:52:37 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[21-Jul-2019 10:53:02 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[21-Jul-2019 10:53:30 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[21-Jul-2019 10:55:33 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[21-Jul-2019 10:56:24 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[23-Jul-2019 00:00:00 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[23-Jul-2019 00:04:36 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[23-Jul-2019 00:05:55 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[23-Jul-2019 00:10:51 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_connect() in /home/mycac9tt/cachet/ldap_connect_test.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 13
+[23-Jul-2019 00:20:38 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_set_option() in /home/mycac9tt/cachet/ldap_connect_test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 9
+[23-Jul-2019 00:23:23 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_set_option() in /home/mycac9tt/cachet/ldap_connect_test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 9
+[23-Jul-2019 00:23:25 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function ldap_set_option() in /home/mycac9tt/cachet/ldap_connect_test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/mycac9tt/cachet/ldap_connect_test.php on line 9
+[23-Jul-2019 00:23:43 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[23-Jul-2019 00:23:55 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[23-Jul-2019 17:00:59 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:53:35 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:53:44 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:53:50 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:55:06 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:55:22 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:56:53 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 11
+[10-Aug-2019 07:57:57 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 10
+[10-Aug-2019 07:58:28 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 10
+[10-Aug-2019 07:59:40 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 12
+[10-Aug-2019 08:04:00 Etc/GMT] PHP Parse error:  syntax error, unexpected '$ldapport' (T_VARIABLE) in /home/mycac9tt/cachet/ldap_connect_test.php on line 12

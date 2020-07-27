@@ -47,6 +47,7 @@
 					return 'admin';
 					break;
 				case 'CN=ACCOUNTS,OU=Accounts,OU=Head Office,DC=CACHETINDIA,DC=COM':
+				case 'CN=ADSyncAdmins,CN=Users,DC=CACHETINDIA,DC=COM':
 	                return 'accounts';
 	                break;
 				default:
