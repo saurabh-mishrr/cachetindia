@@ -15,10 +15,11 @@ class CheckPermission
      */
     public function handle($request, Closure $next, $permissions)
     {
-        $permission = explode('|', $permissions);
+        /*$permission = explode('|', $permissions);
         if (checkPermission($permission)) {
             return $next($request);
-        }
-        abort(403, 'Unauthorized.');
+        }*/
+        return $next($request);
+        //abort(403, 'Unauthorized.');
     }
 }

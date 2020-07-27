@@ -13,7 +13,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('events.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('events.index') }}"> View Events</a>
 
         </div>
 

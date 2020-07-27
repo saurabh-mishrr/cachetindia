@@ -20,7 +20,7 @@ class UpdateEmployeeMasterViaUsers extends Seeder
     public function getUserTableData()
     {
     	$this->userTableData = DB::table('users')
-    						   ->select(['name', 'id', 'memberof', 'date_of_birth', 'mobile_no', 'email_id'])
+    						   ->select(['name', 'id', 'memberof', 'date_of_birth', 'mobile_no', 'email_id', 'emp_code'])
     						   ->get()->toArray();
 
     }
@@ -31,7 +31,7 @@ class UpdateEmployeeMasterViaUsers extends Seeder
     		$fields = json_decode(json_encode($fields), true);
     		return [
                     'emp_id' => $fields['id'],
-    				'emp_code' => $fields['id'],
+    				'emp_code' => $fields['emp_code'],
     				'emp_name' => $fields['name'],
     				'designation' => $fields['memberof'],
     				// 'location' => 'India',
@@ -44,7 +44,7 @@ class UpdateEmployeeMasterViaUsers extends Seeder
     				
     		];
     	}, $this->userTableData); 
-    	DB::table('employee_master')
-    	->insert($arr);
+    	DB::table('employee_master')->truncate();
+    	DB::table('employee_master')->insert($arr);
     }
 }

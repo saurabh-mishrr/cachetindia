@@ -3,6 +3,7 @@
    <title>Laravel</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="csrf-token" content="{{ csrf_token() }}" />
    <link rel="stylesheet" href="css/bootstrap.min.css">
    {{ HTML::style('css/style.css') }}
    {{ HTML::style('css/bootstrap.min.css') }}

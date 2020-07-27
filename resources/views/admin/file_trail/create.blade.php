@@ -15,7 +15,8 @@
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
         {{ session('error') }}
     </div>
-@elseif (session('success')) 
+@endif
+@if (session('success')) 
     <div class="alert alert-success">
         <strong>Hurrey!</strong><br><br>
         {{ session('success') }}
@@ -46,6 +47,23 @@
       		<input type="file" id="tar_file_path" name="tar_file_path">
     	</div>
   	</div>
+  	
+  	<div class="form-group row">
+      <label for="csv_file_path" class="col-sm-2 col-form-label">Month Name</label>
+      <div class="col-sm-8">
+          <select name="month_name">
+          <option>Select option</option>
+          <?php
+         $arr_month=array('January'=>'January','February'=>'February','March'=>'March','April'=>'April','May'=>'May','June' => 'June','July' => 'July','August' => 'August','September' => 'September','October' => 'October','November' => 'November','December' => 'December');
+          foreach ($arr_month as $key => $value) {
+            # code...
+            echo "<option value=".$key.">".$value."</option>";
+          }
+         ?>
+        </select>
+      </div>
+    </div>
+  	
    	<div class="form-group row">
    		<div class="col-sm-2">
    		</div>

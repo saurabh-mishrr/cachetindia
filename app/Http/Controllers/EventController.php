@@ -64,10 +64,16 @@ class EventController extends Controller
             foreach($request->file('pic') as $image)
             {
                 $name=$image->getClientOriginalName();
-                $image->move(public_path().'/images/events/', $name);  
+               
+                $storageLocation = 'events/'.$event_data->id.'/';
+                // $image = $request->file('pic');
+                // $image->move(public_path().'/uploads/events/', $name);  
+             //   $image->move(public_path('/uploads/events/'), $name);
+            
+                $imgStoredIn = $image->storeAs($storageLocation, $name, 'domain');
                 $gallery_data =new EventGallery();
                 $gallery_data->event_id = $event_data->id;
-                $gallery_data->pic = $name;
+                $gallery_data->pic = $event_data->id.'/'.$name;
                 $gallery_data->status = '1';
                 $gallery_data->created_by = "";
                 $gallery_data->updated_by = "";

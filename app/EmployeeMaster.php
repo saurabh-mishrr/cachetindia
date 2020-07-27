@@ -15,15 +15,28 @@ class EmployeeMaster extends Model
 
     //use for retrive emp details.
     public function getBirthWishesData(){
-        $empdata =  DB::table('users')
-            ->join('emp_bod_wishes_detail', 'users.id', '=', 'emp_bod_wishes_detail.emp_id')
-            ->select('users.id', 'users.name', 'users.photo','emp_bod_wishes_detail.comment')
-            ->orderBy('emp_bod_wishes_detail.created_on','desc')
-            ->take(3)
-            ->get();  
+          $empdata =  DB::table('users')
+            ->select('*')
+            ->where(DB::raw("concat(day(str_to_date(date_of_birth,'%d-%m-%Y')),'-',month(str_to_date(date_of_birth,'%d-%m-%Y')))"),"=",DB::raw("concat(day(now()),'-',month(now()))"))
+            ->get(); 
+           // dd($empdata);
         return $empdata;
      
     }
+    
+    //use for get new joiner data.
+    public function getNewJoinee(){
+         $empdata =  DB::table('users')
+            ->select('*')
+            ->where("new_joinee","Y")
+           // ->take(3)
+            ->get();  
+            return $empdata;
+    
+    }
+    
+    
+    
 
 
 }

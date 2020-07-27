@@ -51,7 +51,7 @@ class AchievementController extends Controller
          {
                 $image = $request->file('pic');
                 $name=$image->getClientOriginalName();
-                $image->move(public_path().'/images/achievement/', $name);  
+                $image->move(public_path().'/images/', $name);  
                 $achiev_data =new Achievement();
                 $achiev_data->content = $request->get('content');
                 $achiev_data->pic = $name;
